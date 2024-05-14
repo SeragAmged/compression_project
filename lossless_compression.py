@@ -14,6 +14,7 @@ def lossless_compression(message):
         "analysis": {
             'probabilities': ch_probability,
             'entropy': calculate_entropy(ch_probability),
+            "bits": len(message)*8
 
 
         },
@@ -58,8 +59,8 @@ def lossless_compression(message):
             'compression_ratio': golomb_encode(message)['compression_ratio']
         })
         results['compressions'].append(golomb_encode(message))
-    else:
-        results['analysis'].update({"bits": len(message)*8})
+    # else:
+        # results['analysis'].update({"bits": len(message)*8})
 
     # Sort the algorithms by compression ratio in descending order
     algorithms.sort(key=lambda x: x['compression_ratio'], reverse=True)
